@@ -1,0 +1,24 @@
+{
+  "name": "faros-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/start.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.17.2",
+    "http-errors": "^1.6.3",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2"
+  },
+  "main": "app.js",
+  "bin": {
+    "faros-backend": "start.js"
+  },
+  "author": "Shubham Jha",
+  "license": "ISC",
+  "description": ""
+}
