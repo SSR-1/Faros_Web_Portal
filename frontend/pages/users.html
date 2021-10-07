@@ -149,14 +149,14 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/pages/library.html">
-                            <i class="icon-paper menu-icon"></i>
+                            <i class="ti-image menu-icon"></i>
                             <span class="menu-title">Library</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
                             aria-controls="error">
-                            <i class="icon-ban menu-icon"></i>
+                            <i class="ti-layout menu-icon"></i>
                             <span class="menu-title">Layout</span>
                             <i class="menu-arrow"></i>
                         </a>
@@ -171,13 +171,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/pages/stores.html">
-                            <i class="icon-paper menu-icon"></i>
+                            <i class="ti-map-alt menu-icon"></i>
                             <span class="menu-title">Stores</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="users.html">
-                            <i class="icon-paper menu-icon"></i>
+                        <a class="nav-link" href="/pages/users.html">
+                            <i class="ti-user menu-icon"></i>
                             <span class="menu-title">Users</span>
                         </a>
                     </li>
@@ -279,7 +279,7 @@
                                     <div class="form-group">
                                         <label for="new-user-role">Role*</label>
                                         <select class="custom-select" id="new-user-role">
-                                            <option selected>Choose</option>
+                                            <option value="0" selected>Choose</option>
                                             <option value="1">Super Admin</option>
                                             <option value="2">Org Admin</option>
                                             <option value="3">Store Admin</option>
@@ -289,8 +289,8 @@
                                 <div class="col-md-6">
                                     <label for="new-user-dp">Profile Pic</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <input type="file" class="custom-file-input" id="new-user-dp">
+                                        <label class="custom-file-label" for="new-user-dp">Choose file</label>
                                     </div>
                                 </div>
                             </div>
@@ -298,7 +298,8 @@
                     </div>
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                        <button type="button" class="btn btn-primary">Add User</button>
+                        <p id="new-user-message"></p>
+                        <button type="button" id="new-user-submit-button" class="btn btn-primary" onclick="add_new_user()">Add User</button>
                     </div>
                 </div>
             </div>
@@ -326,7 +327,7 @@
     <!-- Custom js for this page-->
     <script src="./../../js/dashboard.js"></script>
     <script src="./../../js/Chart.roundedBarCharts.js"></script>
-    <script src="./../../js/render_user_list.js"></script>
+    <script src="./../../js/user.js"></script>
     <!-- End custom js for this page-->
 </body>
 

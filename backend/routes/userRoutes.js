@@ -18,4 +18,16 @@ router.get('/getUserDetailsById/:id', function (req, res) {
         .catch(err => handleError(res, err));
 });
 
+router.post('/addNewUser', function (req, res) {
+    userServices.addNewUser(req.body)
+        .then(data => handleResponse(res, data))
+        .catch(err => handleError(res, err));
+});
+
+router.get('/deleteUserById/:id', function (req, res) {
+    userServices.deleteUserById(req.params.id)
+        .then(data => handleResponse(res, data))
+        .catch(err => handleError(res, err));
+});
+
 module.exports = router;
