@@ -91,9 +91,11 @@ function delete_user(user_id) {
 
 load_users_table();
 
-$(document).on("change", "select", function () {
-    $("option[value=" + this.value + "]", this)
-        .attr("selected", true).siblings()
-        .removeAttr("selected")
-});
+$(document).ready(function () {
+    $(document).on("change", "select", function () {
+        $("option[value=" + this.value + "]", this)
+            .attr("selected", true).siblings()
+            .removeAttr("selected")
+    });
+})
 

@@ -20,10 +20,35 @@
     <link rel="stylesheet" href="./../css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="./../images/favicon.png" />
+
+    <style>
+        .message {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            width: 250px;
+            z-index:9999;
+        }
+        .alert {
+            padding: 12px 18px !important
+        }
+        .alert-error {
+            margin: 0 auto;
+            color: #b10b08;;
+            background-color: #f3acac;
+        }
+        .alert-success {
+            margin: 0 auto;
+            color: #08b110;;
+            background-color: #c8f3ac;
+        }
+       
+    </style>
 </head>
 
 <body>
     <div class="container-scroller">
+
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -49,7 +74,7 @@
                         </div>
                     </li>
                     <li class="nav-item nav-search d-none d-lg-block">
-                        <button type="button" class="btn btn-primary">Add New Item</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-new-file">Add New Item</button>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
@@ -128,6 +153,17 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
+
+            <!-- Alerts -->
+            <div class="message message-error" style="display: none;">
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="message message-success" style="display: none;"></div>
+
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
@@ -173,15 +209,14 @@
                 </ul>
             </nav>
             <!-- partial -->
+
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
                         <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Library</h3>
-                                    <h6 class="font-weight-normal mb-0">List of images and videos for all the stores</h6>
-                                    <!-- <button type="button" class="btn btn-primary">Add More</button> -->
+                                    <h3 class="font-weight-bold">Library of Texas Chicken</h3>
                                 </div>
                                 <div class="col-12 col-xl-4">
                                     <div class="justify-content-end d-flex">
@@ -212,187 +247,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.</p>
-                                    <div class="d-flex flex-wrap">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                    <!-- <hr>
-                                    <div class="d-flex flex-wrap">
-                                        <div class="mr-5">
-                                            <img src="./../images/faces/face28.jpg" style="width:50px; height:50px" alt="profile">
-                                        </div>
-                                        <div class="">
-                                            <p><span class="font-weight-medium">Added Date: </span><span>28 August 2021</span></p>
-                                            <p><span class="font-weight-medium">Added By: </span><span>Shubham Jha</span></p>
-                                        </div>
-                                    </div> -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.</p>
-                                    <div class="d-flex flex-wrap mb-5">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.
-                                    </p>
-                                    <div class="d-flex flex-wrap mb-5">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.</p>
-                                    <div class="d-flex flex-wrap mb-5">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.</p>
-                                    <div class="d-flex flex-wrap mb-5">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.</p>
-                                    <div class="d-flex flex-wrap mb-5">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.</p>
-                                    <div class="d-flex flex-wrap mb-5">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 grid-margin stretch-card">
-                            <div class="card">
-                                <img src="./../images/products/product.jpg" width="100%"></img>
-                                <div class="card-body">
-                                    <p class="card-title">Lorem Ipsum</p>
-                                    <p class="font-weight-500">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus erat, suscipit a volutpat vel, imperdiet in tortor.
-                                        Aliquam pharetra enim sit amet mauris pretium, tristique scelerisque nisl pulvinar.</p>
-                                    <div class="d-flex flex-wrap mb-5">
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Order Value</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                                        </div>
-                                        <div class="mr-5 mt-3">
-                                            <p class="text-muted">Orders</p>
-                                            <h3 class="text-primary fs-30 font-weight-medium">4K</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="row" id="library-list"></div>
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -409,6 +264,39 @@
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
+
+        <!-- User Registration Modal -->
+        <div class="modal fade" id="add-new-file" tabindex="-1" role="dialog" aria-labelledby="Register New User"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Library Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="file-upload-form">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- <label for="new-file">Upload File</label> -->
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="new-file" accept="image/*, video/*">
+                                        <label class="custom-file-label" for="new-file">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                        <p id="new-user-message"></p>
+                        <button type="button" id="file-upload-button" class="btn btn-primary">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- container-scroller -->
 
@@ -432,29 +320,8 @@
     <!-- Custom js for this page-->
     <script src="./../js/dashboard.js"></script>
     <script src="./../js/Chart.roundedBarCharts.js"></script>
+    <script src="./../js/library.js"></script>
     <!-- End custom js for this page-->
-
-    <script>
-        $('div[aria-labelledby="dropdownMenuCompany"] a').click(function () {
-            var selected_option = $(this).text().trim();
-            $('#dropdownMenuCompany').text(selected_option);
-            $('#dropdownMenuStore').text("Select Store");
-            $('div#store-dropdown-list').removeAttr("hidden");
-
-            $('div[aria-labelledby="dropdownMenuStore"] a').each(function(el){
-                if($(this).attr('company-id') == selected_option) {
-                    $(this).fadeIn();
-                } else {
-                    $(this).fadeOut();
-                }
-            })
-        })
-
-        $('div[aria-labelledby="dropdownMenuStore"] a').click(function () {
-            var selected_option = $(this).text().trim();
-            $('#dropdownMenuStore').text(selected_option);
-        });
-    </script>
 </body>
 
 </html>

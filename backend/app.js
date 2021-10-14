@@ -7,6 +7,7 @@ const cors = require('cors');
 const usersRouter = require('./routes/userRoutes');
 const storeRouter = require('./routes/storeRoutes');
 const orgRouter = require('./routes/orgRoutes');
+const libraryRouter = require('./routes/libraryRoute');
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/api/user', usersRouter);
 app.use('/api/store', storeRouter);
 app.use('/api/org', orgRouter);
+app.use('/api/library', libraryRouter);
 
 app.use(function (req, res, next) {
     next(createError(404));
