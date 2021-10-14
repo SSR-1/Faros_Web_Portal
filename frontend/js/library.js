@@ -14,7 +14,7 @@ function suuccessAlert(message) {
 
 function removeContent(library_id) {
     $.ajax({
-        url: `http://3.17.129.226:3000/api/library/deleteContentById/${library_id}`,
+        url: `http://3.17.129.226:8080/api/library/deleteContentById/${library_id}`,
         type: 'GET',
         success: function (response) {
             if (response.status == 'success') {
@@ -29,7 +29,7 @@ function load_library_list() {
     const parent_div = $('div#library-list');
     parent_div.empty();
     $.ajax({
-        url: 'http://3.17.129.226:3000/api/library/getAllLibraryList',
+        url: 'http://3.17.129.226:8080/api/library/getAllLibraryList',
         type: 'GET',
         success: function (data) {
             let library_id, content_type, content_location, content_size, last_updated, last_updated_by, content_title, layout_count;
@@ -151,7 +151,7 @@ $(document).ready(function () {
             fd.append('file', files[0]);
 
             $.ajax({
-                url: 'http://3.17.129.226:3000/api/library/uploadFile',
+                url: 'http://3.17.129.226:8080/api/library/uploadFile',
                 type: 'post',
                 data: fd,
                 contentType: false,
