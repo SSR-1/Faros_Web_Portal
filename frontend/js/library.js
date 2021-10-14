@@ -49,12 +49,12 @@ function load_library_list() {
 
                 if (content_type == 'image') {
                     content_type = 'Image';
-                    content_tag = `<img src="http://localhost:3000${content_location}" width="100%"></img>`;
+                    content_tag = `<img src="http://3.17.129.226:3000${content_location}" width="100%"></img>`;
                 }
 
                 if (content_type == 'video') {
                     content_type = 'Video';
-                    content_tag = `<video width="100%" controls> <source src="http://localhost:3000${content_location}" type="video/mp4"></video>`;
+                    content_tag = `<video width="100%" controls> <source src="http://3.17.129.226:3000${content_location}" type="video/mp4"></video>`;
                 }
 
                 list_div =
