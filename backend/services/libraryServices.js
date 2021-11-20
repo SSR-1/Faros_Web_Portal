@@ -28,6 +28,14 @@ exports.getImageDetailsById = function (image_id) {
     })
 }
 
+exports.getContentDetailsById = function (library_id) {
+    return new Promise((res, rej) => {
+        library.content_details_by_id(library_id)
+            .then(data => res(data))
+            .catch(err => rej(err));
+    })
+}
+
 exports.uploadFile = function (req) {
     return new Promise((res, rej) => {
         const form = new formidable();

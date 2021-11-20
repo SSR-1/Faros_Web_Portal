@@ -47,17 +47,74 @@
             ;
             background-color: #c8f3ac;
         }
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #008CBA;
+        }
+        .card:hover .overlay {
+            opacity: 0.92;
+        }
+
+        .overlay-text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .overlay-icon {
+            font-size: 50px;
+            font-weight: 900;
+            padding: 15px 18px 8px 18px;
+            border-radius: 50%;
+            background-color: white;
+            color: green;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        }
+        .overlay-icon:hover {
+            cursor: pointer;
+        }
+        .layout-panel {
+            height: 265px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            overflow: scroll;
+            white-space:nowrap;
+        }
+        .layout-panel img, .layout-panel video{
+            max-height: 200px;
+            padding: 10px;
+        }
+        .layout-panel > div {
+            display: inline-block;
+        }
+        span[contenteditable="true"] {
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-scroller">
+
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="/pages/dashboard.html"><img src="./../../images/logo.jpg"
+                <a class="navbar-brand brand-logo mr-5" href="dashboard.html"><img src="./../../images/logo.jpg"
                         class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="/pages/dashboard.html"><img src="./../../images/logo-mini.png"
+                <a class="navbar-brand brand-logo-mini" href="dashboard.html"><img src="./../../images/logo-mini.png"
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -75,9 +132,6 @@
                             <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
                                 aria-label="search" aria-describedby="search">
                         </div>
-                    </li>
-                    <li class="nav-item nav-search d-none d-lg-block">
-                        <button type="button" class="btn btn-primary">Add New Item</button>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
@@ -156,12 +210,12 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-
             <!-- Alerts -->
-            <div class="message message-error" style="display: none;"></div>
-            
+            <div class="message message-error" style="display: none;">
+            </div>
+
             <div class="message message-success" style="display: none;"></div>
-            
+
             <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
@@ -178,7 +232,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+                        <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
+                            aria-controls="error">
                             <i class="ti-layout menu-icon"></i>
                             <span class="menu-title">Layout</span>
                             <i class="menu-arrow"></i>
@@ -207,20 +262,38 @@
                 </ul>
             </nav>
             <!-- partial -->
+
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
-                        <div class="col-md-12 grid-margin">
+                        <div class="col-md-12 mb-3">
                             <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Layout List</h3>
-                                    <h6 class="font-weight-normal mb-0">List of layouts available across the companies </h6> 
+                                <div class="col-md-4">
+                                    <h3 class="font-weight-bold">Layout Design Panel</h3>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="justify-content-end d-flex">
+                                        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                                            <button type="button" class="btn btn-primary font-weight-bold" style="width:170px" onclick="clearLayoutPanel()">CLEAR PANEL</button>
+                                            <!-- <button type="button" class="btn btn-primary font-weight-bold" style="width:170px;" onclick="editConfig()">EDIT CONFIG</button> -->
+                                            <button type="button" class="btn btn-primary font-weight-bold" style="width:170px;" onclick="createLayout()">CREATE LAYOUT</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="library-list">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin">
+                            <div class="layout-panel">
+                                
+                            </div>
+                        </div>
                     </div>
+                    <div class="row">
+                        
+                    </div>
+                    <div class="row" id="library-list"></div>
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -237,6 +310,40 @@
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
+
+        <!-- User Registration Modal -->
+        <div class="modal fade" id="add-new-file" tabindex="-1" role="dialog" aria-labelledby="Register New User"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Library Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="file-upload-form">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- <label for="new-file">Upload File</label> -->
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="new-file"
+                                            accept="image/*, video/*">
+                                        <label class="custom-file-label" for="new-file">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                        <p id="new-user-message"></p>
+                        <button type="button" id="file-upload-button" class="btn btn-primary">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- container-scroller -->
 
@@ -260,30 +367,9 @@
     <!-- Custom js for this page-->
     <script src="./../../js/dashboard.js"></script>
     <script src="./../../js/Chart.roundedBarCharts.js"></script>
-    <script src="./../../js/list.js"></script>
+    <script src="./../../js/create.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- End custom js for this page-->
-
-    <script>
-        $('div[aria-labelledby="dropdownMenuCompany"] a').click(function () {
-            var selected_option = $(this).text().trim();
-            $('#dropdownMenuCompany').text(selected_option);
-            $('#dropdownMenuStore').text("Select Store");
-            $('div#store-dropdown-list').removeAttr("hidden");
-
-            $('div[aria-labelledby="dropdownMenuStore"] a').each(function (el) {
-                if ($(this).attr('company-id') == selected_option) {
-                    $(this).fadeIn();
-                } else {
-                    $(this).fadeOut();
-                }
-            })
-        })
-
-        $('div[aria-labelledby="dropdownMenuStore"] a').click(function () {
-            var selected_option = $(this).text().trim();
-            $('#dropdownMenuStore').text(selected_option);
-        });
-    </script>
 </body>
 
 </html>

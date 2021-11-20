@@ -18,6 +18,12 @@ router.get('/getImageList', function (req, res) {
         .catch(err => handleError(res, err));
 });
 
+router.get('/getContentDetailsById/:id', function (req, res) {
+    libraryServices.getContentDetailsById(req.params.id)
+        .then(data => handleResponse(res, data))
+        .catch(err => handleError(res, err));
+});
+
 router.get('/getImageDetailsById/:id', function (req, res) {
     libraryServices.getImageDetailsById(req.params.id)
         .then(data => handleResponse(res, data))

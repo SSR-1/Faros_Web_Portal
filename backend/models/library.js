@@ -40,6 +40,18 @@ exports.image_details_by_id = function (image_id) {
     })
 }
 
+exports.content_details_by_id = function (library_id) {
+    return new Promise((res, rej) => {
+        const query = `SELECT * FROM library WHERE library_id = '${library_id}'`;
+        dbObj.query(query, function (error, results, fields) {
+            if (error) {
+                rej(error);
+            }
+            res(results);
+        });
+    })
+}
+
 // Add New User
 exports.add_new_library_item = function (file_details) {
     return new Promise((res, rej) => {

@@ -12,5 +12,13 @@ exports.success_alerts = {
     "FILE_DELETE_SUCCESS": {
         "status": "success",
         "message": "File successfully removed!"
+    },
+    "LAYOUT_CREATE_SUCCESS": {
+        "status": "success",
+        "message": "Layout successfully created!"
+    },
+    "LAYOUT_DELETE_SUCCESS": {
+        "status": "success",
+        "message": "Layout successfully deleted!"
     }
 }
