@@ -9,9 +9,9 @@ exports.getStoreList = function () {
     })
 }
 
-exports.getStoreDetailsById = function (user_id) {
+exports.getStoreDetailsById = function (store_id) {
     return new Promise((res, rej) => {
-        store.store_details_by_id(user_id)
+        store.store_details_by_id(store_id)
             .then(data => res(data))
             .catch(err => rej(err));
     })

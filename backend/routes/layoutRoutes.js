@@ -24,6 +24,7 @@ router.get('/deleteLayoutById/:id', function (req, res) {
 });
 
 router.post('/addNewLayout/', function (req, res) {
+    console.log(req.body);
     layoutServices.addNewLayout(req.body)
         .then(data => handleResponse(res, data))
         .catch(err => handleError(res, err));

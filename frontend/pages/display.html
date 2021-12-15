@@ -59,7 +59,7 @@
                         </div>
                     </li>
                     <li class="nav-item nav-search d-none d-lg-block">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userRegistration">Add New User</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewDisplay">Add New Display</button>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
@@ -196,8 +196,8 @@
                         <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Available Users List</h3>
-                                    <h6 class="font-weight-normal mb-0">List of users available across all the organizations and stores
+                                    <h3 class="font-weight-bold">Available Display List</h3>
+                                    <h6 class="font-weight-normal mb-0">List of displays available across all the organizations and stores
                                     </h6>
                                 </div>
                             </div>
@@ -209,13 +209,12 @@
                                 <div class="card-body">
                                     <!-- <p class="card-title mb-0">Top Orders</p> -->
                                     <div class="table-responsive">
-                                        <table id="user-list-table" class="table table-striped table-borderless">
+                                        <table id="display-list-table" class="table table-striped table-borderless">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Mobile</th>
-                                                    <th>Role</th>
+                                                    <th>Display</th>
+                                                    <th>Active Layout</th>
+                                                    <th>Store</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -244,11 +243,11 @@
         <!-- page-body-wrapper ends -->
 
         <!-- User Registration Modal -->
-        <div class="modal fade" id="userRegistration" tabindex="-1" role="dialog" aria-labelledby="Register New User" aria-hidden="true">
+        <div class="modal fade" id="addNewDisplay" tabindex="-1" role="dialog" aria-labelledby="Register New User" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New User Registration</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Adding New Display</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -256,47 +255,33 @@
                     <div class="modal-body">
                         <form>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="new-user-name">Full Name*</label>
-                                        <input type="email" class="form-control" id="new-user-name" placeholder="Enter email">
+                                        <label for="new-display-name">Display Name*</label>
+                                        <input type="text" class="form-control" id="new-display-name" placeholder="Enter Display Name">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="new-user-mobile">Mobile*</label>
-                                        <input type="text" class="form-control" id="new-user-mobile" placeholder="Mobile">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="new-user-email">Email Address*</label>
-                                        <input type="email" class="form-control" id="new-user-email" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="new-user-password">Password*</label>
-                                        <input type="password" class="form-control" id="new-user-password" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="new-user-role">Role*</label>
-                                        <select class="custom-select" id="new-user-role">
+                                        <label for="new-display-store">Store*</label>
+                                        <select class="custom-select" id="new-display-store">
                                             <option value="0" selected>Choose</option>
-                                            <option value="1">Super Admin</option>
-                                            <option value="2">Org Admin</option>
-                                            <option value="3">Store Admin</option>
+                                            <option value="str00001">Store 1</option>
+                                            <option value="str00002">Store 2</option>
+                                            <option value="str00003">Store 3</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="new-user-dp">Profile Pic</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="new-user-dp">
-                                        <label class="custom-file-label" for="new-user-dp">Choose file</label>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="new-display-layout">Layout*</label>
+                                        <select class="custom-select" id="new-display-layout">
+                                            <option value="0" selected>Choose</option>
+                                            <option value="lyt00001">Layout 1</option>
+                                            <option value="lyt00002">Layout 2</option>
+                                            <option value="lyt00003">Layout 3</option>
+                                            <option value="lyt00004">Layout 4</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -305,7 +290,7 @@
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                         <p id="new-user-message"></p>
-                        <button type="button" id="new-user-submit-button" class="btn btn-primary" onclick="add_new_user()">Add User</button>
+                        <button type="button" id="new-user-submit-button" class="btn btn-primary" onclick="add_new_display()">Add Display</button>
                     </div>
                 </div>
             </div>
@@ -333,7 +318,7 @@
     <!-- Custom js for this page-->
     <script src="./../../js/dashboard.js"></script>
     <script src="./../../js/Chart.roundedBarCharts.js"></script>
-    <script src="./../../js/user.js"></script>
+    <script src="./../../js/display.js"></script>
     <!-- End custom js for this page-->
 </body>
 

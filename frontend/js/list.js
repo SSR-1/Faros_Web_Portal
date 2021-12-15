@@ -49,7 +49,7 @@ async function load_layouts() {
     const layoutList = await getRequest('http://3.17.129.226:8080/api/layout/getLayoutList');
 
     const parent_div = $('div#library-list');
-    let carousel_id, layout_id, layout_content, last_updated, last_updated_by, content_id_list;
+    let carousel_id, layout_id, layout_content, last_updated, last_updated_by, content_id_list, layout_name;
 
     layoutList.forEach(async (element, index) => {
         carousel_id = `carousel-${index + 1}`;
@@ -57,6 +57,7 @@ async function load_layouts() {
         layout_content = JSON.parse(element.layout_content);
         last_updated = element.last_updated;
         last_updated_by = element.last_updated_by;
+        layout_name = element.layout_name;
         let content_id_list = [];
         
         // console.log(layout_content);
@@ -93,8 +94,8 @@ async function load_layouts() {
                                 <img src="./../../images/faces/face28.jpg" style="width:50px; height:50px; border-radius:50%" alt="profile">
                             </div>
                             <div class="col-md-10">
-                                <p><span class="font-weight-medium last_updated_by">User Name</span></p>
-                                <p><span>2021-10-07 20:51:18</span></p>
+                                <p><span class="font-weight-medium">${layout_name}</span></p>
+                                <p><span class="last_updated_by" data-id="usr00001">User Name</span> | <span>2021-10-07 20:51:18</span></p>
                             </div>
                         </div>
                         <hr>

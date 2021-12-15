@@ -112,9 +112,14 @@ function clearLayoutPanel() {
 
 // Create layout object send to backend
 function createLayout() {
-    let layout_id="", last_updated_by="", last_updated_time="";
+    let layout_id = "", last_updated_by = "", last_updated_time = "";
     const layout_content = [];
     let content_id, order, screen_time
+    let layout_name = document.querySelector('input#new-layout-name').value;
+    if (!layout_name) { 
+        alert("Please enter layout name!");
+        return;
+    }
     document.querySelectorAll("div.layout-panel > div").forEach(el => {
         content_id = el.querySelector('img, video').getAttribute("data-id");
         order = el.querySelector('p.order span:last-child').textContent;
@@ -141,7 +146,8 @@ function createLayout() {
         "layout_id": layout_id,
         "layout_content": layout_content,
         "last_updated_by": last_updated_by,
-        "last_updated_time": last_updated_time
+        "last_updated_time": last_updated_time,
+        "layout_name": layout_name
     }
     console.log(layout_data);
 
