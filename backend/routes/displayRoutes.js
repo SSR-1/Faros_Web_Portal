@@ -18,4 +18,11 @@ router.post('/addNewDisplay', function (req, res) {
         .catch(err => handleError(res, err));
 });
 
+router.get('/getDisplayListByStoreId/:id', function (req, res) {
+    console.log(req.params.id);
+    displayServices.getDisplayListByStoreId(req.params.id)
+        .then(data => handleResponse(res, data))
+        .catch(err => handleError(res, err));
+});
+
 module.exports = router;

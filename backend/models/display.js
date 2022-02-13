@@ -47,3 +47,15 @@ exports.add_new_display = function (display_details) {
 // Get Display Deatils By ID
 // Add New Display
 // Delete Display By ID
+
+exports.display_details_by_store_id = function (store_id) {
+    return new Promise((res, rej) => {
+        const query = `SELECT * FROM display WHERE store_id = '${store_id}'`;
+        dbObj.query(query, function (error, results, fields) {
+            if (error) {
+                rej(error);
+            }
+            res(results);
+        });
+    })
+}
