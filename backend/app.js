@@ -10,6 +10,7 @@ const orgRouter = require('./routes/orgRoutes');
 const libraryRouter = require('./routes/libraryRoutes');
 const layoutRouter = require('./routes/layoutRoutes');
 const displayRouter = require('./routes/displayRoutes');
+const deviceRouter = require('./routes/deviceRoutes');
 
 const app = express();
 app.use(express.json());
@@ -23,6 +24,7 @@ app.use('/api/org', orgRouter);
 app.use('/api/library', libraryRouter);
 app.use('/api/layout', layoutRouter);
 app.use('/api/display', displayRouter);
+app.use('/api/device', deviceRouter);
 
 app.use(function (req, res, next) {
     next(createError(404));
