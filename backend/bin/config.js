@@ -20,5 +20,9 @@ exports.success_alerts = {
     "LAYOUT_DELETE_SUCCESS": {
         "status": "success",
         "message": "Layout successfully deleted!"
+    },
+    "LAYOUT_UPDATE_SUCCESS": {
+        "status": "success",
+        "message": "Layout successfully updated!"
     }
 }

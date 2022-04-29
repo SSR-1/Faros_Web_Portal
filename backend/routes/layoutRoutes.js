@@ -30,4 +30,11 @@ router.post('/addNewLayout/', function (req, res) {
         .catch(err => handleError(res, err));
 });
 
+router.post('/updateLayout/', function (req, res) {
+    console.log(req.body);
+    layoutServices.updateLayout(req.body)
+        .then(data => handleResponse(res, data))
+        .catch(err => handleError(res, err));
+});
+
 module.exports = router;

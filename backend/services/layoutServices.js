@@ -25,6 +25,14 @@ exports.addNewLayout = function (layout_details) {
     })
 }
 
+exports.updateLayout = function (layout_details) { 
+    return new Promise((res, rej) => {
+        layout.update_layout(layout_details)
+            .then(data => res(data))
+            .catch(err => rej(err));
+    })
+}
+
 exports.deleteLayoutById = function (layout_id) {
     return new Promise((res, rej) => {
         layout.delete_layout_by_id(layout_id)

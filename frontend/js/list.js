@@ -122,7 +122,7 @@ async function load_layouts() {
                                 <p class="text-primary font-weight-bold hover-cursor" data-id="cnt00001">DISABLE</p>
                             </div>
                             <div class="col-md-4 text-center">
-                                <p class="text-primary font-weight-bold hover-cursor" data-id="cnt00001">EDIT</p>
+                                <p class="text-primary font-weight-bold hover-cursor" data-id="${layout_id}" onclick="edit_layout('${layout_id}')">EDIT</p>
                             </div>
                         </div>
                     </div>
@@ -156,6 +156,15 @@ function delete_layout(layout_id) {
             }
         }
     })
+}
+
+function edit_layout(layout_id) {
+    console.log(layout_id);
+    // const ele = $(`p[data-id="${layout_id}"]`).parent().parent().parent().parent();
+    // $("div#editLayout div.modal-body").append(ele.html());
+    // $("div#editLayout").modal();
+    const url = `http://localhost:3000/pages/layout/create.html?${layout_id}`;
+    window.location.href = url;
 }
 
 load_layouts();

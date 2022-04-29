@@ -131,17 +131,6 @@ function createLayout() {
         })
     });
    
-    // $("div.layout-panel > div").each(function (index, el) {
-    //     content_id = $(this).querySelector('img, video').getAttribute("data-id");
-    //     order = $(this).querySelector('p.order span:last-child');
-    //     screen_time = $(this).querySelector('p.screen-time span:last-child');;
-    //     layout_content.push({
-    //         "content_id": content_id,
-    //         "order": order,
-    //         "screen_time": screen_time
-    //     })
-    // })
-
     const layout_data = {
         "layout_id": layout_id,
         "layout_content": layout_content,
@@ -164,14 +153,128 @@ function createLayout() {
     })
 }
 
+function updateLayout() { 
+    const url = window.location.href;
+    const layout_id = url.split("?") ? url.split("?")[1] : null;
+    const last_updated_by = "";
+    const last_updated_time = "";
+    const layout_content = [];
+    let content_id, order, screen_time
+    let layout_name = document.querySelector('input#new-layout-name').value;
+    if (!layout_name) {
+        alert("Please enter layout name!");
+        return;
+    }
+    document.querySelectorAll("div.layout-panel > div").forEach(el => {
+        content_id = el.querySelector('img, video').getAttribute("data-id");
+        order = el.querySelector('p.order span:last-child').textContent;
+        screen_time = el.querySelector('p.screen-time span:last-child').textContent;
+        layout_content.push({
+            "content_id": content_id,
+            "order": order,
+            "screen_time": screen_time
+        })
+    });
+
+    const layout_data = {
+        "layout_id": layout_id,
+        "layout_content": layout_content,
+        "last_updated_by": last_updated_by,
+        "last_updated_time": last_updated_time,
+        "layout_name": layout_name
+    }
+    console.log(layout_data);
+
+    $.ajax({
+        url: "http://3.17.129.226:8080/api/layout/updateLayout",
+        type: "POST",
+        data: layout_data,
+        success: function (response) {
+            if (response.status == 'success') {
+                suuccessAlert(response.message);
+                clearLayoutPanel();
+            }
+        }
+    })
+}
+
 load_library_list();
 
-$(document).ready(function () {
-    // $('#new-file').on('change', function () {
-    //     var fileName = $(this).val();
-    //     $(this).next('.custom-file-label').html(fileName);
-    // })
+function getRequest(url) {
+    return new Promise(res => {
+        fetch(url).then(result => result.json()).then(data => res(data));
+    })
+}
 
+$(document).ready(function () {
+
+    const url = window.location.href;
+    const layout_id = url.split("?") ? url.split("?")[1] : null;
+    if (layout_id) { 
+        $("button#create_layout_btn").text("UPDATE LAYOUT");
+        $("button#create_layout_btn").attr("onclick", "updateLayout()")
+        $.ajax({
+            url: `http://3.17.129.226:8080/api/layout/getLayoutDetailsById/${layout_id}`,
+            type: 'get',
+            success: function (response) {
+                const layout_content = response[0]["layout_content"];
+                console.log()
+                let layout_name = response[0].layout_name;
+                let content_details;
+                JSON.parse(layout_content).forEach(async (ele, index) => {
+                    content_details = await getRequest(`http://3.17.129.226:8080/api/library/getContentDetailsById/${ele.content_id}`);
+                    let content_location = `http://3.17.129.226:3000${content_details[0].content_location}`;
+                    let layout_order = ele.order;
+                    let layout_screen_time = ele.screen_time;
+                    let content_size = content_details[0].content_size;
+                    let content_title = content_details[0].content_title;
+                    let content_type = content_details[0].content_type;
+                    let last_updated = content_details[0].last_updated;
+                    let last_updated_by = content_details[0].last_updated_by;
+                    let layout_count = content_details[0].layout_count;
+                    let library_id = content_details[0].library_id;
+
+                    if (content_type == 'image') {
+                        let layout_element = `<div>
+                            <img class="shadow-sm" style="vertical-align:unset" data-id="${library_id}" src="${content_location}" height="100%">
+                            <div style="padding:10px" class="shadow-sm text-center">
+                                <p class="order" style="display:inline-block; margin-bottom:0px; line-height:0.875rem">
+                                    <span class="font-weight-bold">Position: </span>
+                                    <span style="padding:5px;" contenteditable="true">${layout_order}</span>
+                                </p>&nbsp;&nbsp;|&nbsp;
+                                <p class="screen-time" style="display:inline-block; margin-bottom:0px; line-height:0.875rem">
+                                    <span class="font-weight-bold">Screen Time: </span>
+                                    <span style="padding:5px" contenteditable="true">${layout_screen_time}</span>
+                                </p>
+                            </div>
+                        </div>`;
+                        $("div.layout-panel").append(layout_element);
+                        $("input#new-layout-name").val(layout_name);
+                    }
+
+                    // addToLayoutPanel(`${library_id}`, `http://3.17.129.226:3000${content_location}`, `${content_type}`);
+
+                    // if (content_type == 'video') {
+                    //     $(`<div
+                    //         <video class="shadow-sm" data-id="cnt00005" height="200px" controls="">
+                    //             <source src="http://3.17.129.226:3000http://3.17.129.226:3000/library/images/fd-344b6b90-ebc7-46ce-a785-d1606c38155b.mp4" type="video/mp4">
+                    //         </video>
+                    //         <div style="padding:10px" class="shadow-sm text-center">
+                    //             <p class="order" style="display:inline-block; margin-bottom:0px; line-height:0.875rem">
+                    //                 <span class="font-weight-bold">Position: </span>
+                    //                 <span style="padding:5px;" contenteditable="true">3</span>
+                    //             </p>&nbsp;&nbsp;|&nbsp;
+                    //             <p class="screen-time" style="display:inline-block; margin-bottom:0px; line-height:0.875rem">
+                    //                 <span class="font-weight-bold">Screen Time: </span>
+                    //                 <span style="padding:5px" contenteditable="true">5</span>
+                    //             </p>
+                    //         </div>
+                    //     </div>`);
+                    // }
+                })
+            }
+        });
+    }
     $('div[aria-labelledby="dropdownMenuCompany"] a').click(function () {
         var selected_option = $(this).text().trim();
         $('#dropdownMenuCompany').text(selected_option);

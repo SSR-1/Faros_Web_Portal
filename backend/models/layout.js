@@ -60,6 +60,26 @@ exports.add_new_layout = function (layout_details) {
     })
 }
 
+exports.update_layout = function (layout_details) {
+    return new Promise((res, rej) => {
+        const layout_id = layout_details.layout_id;
+        const layout_content = JSON.stringify(layout_details.layout_content);
+        const last_updated = "";
+        const last_updated_by = "";
+        const store_id = "";
+        const layout_name = layout_details.layout_name;
+
+        query = `UPDATE layout SET layout_content='${layout_content}', last_updated='${last_updated}', last_updated_by='${last_updated_by}', store_id='${store_id}', layout_name='${layout_name}' WHERE layout_id='${layout_id}';`
+        console.log(query);
+        dbObj.query(query, function (error, results, fields) {
+            if (error) {
+                rej(error);
+            }
+            res(config.success_alerts.LAYOUT_UPDATE_SUCCESS);
+        });
+    })
+}
+
 exports.delete_layout_by_id = function (layout_id) {
     return new Promise((res, rej) => {
         const query = `DELETE FROM layout WHERE layout_id = '${layout_id}'`;
