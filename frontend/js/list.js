@@ -163,7 +163,7 @@ function edit_layout(layout_id) {
     // const ele = $(`p[data-id="${layout_id}"]`).parent().parent().parent().parent();
     // $("div#editLayout div.modal-body").append(ele.html());
     // $("div#editLayout").modal();
-    const url = `http://localhost:3000/pages/layout/create.html?${layout_id}`;
+    const url = `http://3.17.129.226/:3000/pages/layout/create.html?${layout_id}`;
     window.location.href = url;
 }
 
